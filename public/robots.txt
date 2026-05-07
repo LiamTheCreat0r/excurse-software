@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://excurse.com/sitemap-index.xml

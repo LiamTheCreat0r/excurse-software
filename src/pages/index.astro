@@ -1,11 +1,485 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import BaseLayout from '../layouts/BaseLayout.astro';
+import logo from '../assets/images/logos/excurse-software-logo.png';
+import logoAlternate from '../assets/images/logos/excurse-software-logo-alternate.png';
+import babelCartridge from '../assets/images/cartridges/babel-adventure-cartridge.png';
+import parabellumCartridge from '../assets/images/cartridges/parabellum-rain-cartridge.png';
+import instagramIcon from '../assets/images/socials/Instagram_logo.png';
+import tiktokIcon from '../assets/images/socials/Tiktok_icon.png';
+import twitterIcon from '../assets/images/socials/Twitter_icon.png';
+import youtubeIcon from '../assets/images/socials/Youtube_icon.png';
+import kofiIcon from '../assets/images/socials/Kofi_icon.png';
 ---
 
-<Layout>
-	<Welcome />
-</Layout>
+<BaseLayout title="Excurse Software" description="A video game studio">
+  <nav id="menu-bar">
+    <div class="menu-inner">
+      <a href="#" class="menu-logo-link">
+        <img src={logoAlternate.src} alt="Excurse Software" class="menu-logo" />
+        <span class="menu-brand">Excurse Software</span>
+      </a>
+      <div class="menu-links">
+        <a href="#studio" class="menu-link">The Studio</a>
+        <a href="#games" class="menu-link">Our Games</a>
+        <a href="#team" class="menu-link">The Team</a>
+      </div>
+    </div>
+  </nav>
+
+  <section id="studio" class="section studio">
+    <div class="studio-content">
+      <div class="studio-logo">
+        <img src={logo.src} alt="Excurse Software" width="180" height="auto" />
+      </div>
+      <div class="studio-text">
+        <h1>Excurse Software</h1>
+        <p class="tagline">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="games" class="section games">
+    <h2>Our Games</h2>
+    <div class="games-content">
+      <div class="cartridge-wrap">
+        <img src={babelCartridge.src} alt="Babel Adventure" class="cartridge-img" />
+        <p class="device-label">Babel Adventure</p>
+      </div>
+      <div class="cartridge-wrap">
+        <img src={parabellumCartridge.src} alt="Parabellum Rain" class="cartridge-img" />
+        <p class="device-label">Parabellum Rain</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="team" class="section team">
+    <h2>The Team</h2>
+    <div class="team-grid">
+      <div class="team-member">
+        <div class="member-icon">
+          <svg viewBox="0 0 80 80" width="100" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="40" cy="28" r="14" />
+            <path d="M14 72c0-14 12-26 26-26s26 12 26 26" />
+          </svg>
+        </div>
+        <h3>John Doe</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+      </div>
+      <div class="team-member">
+        <div class="member-icon">
+          <svg viewBox="0 0 80 80" width="100" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="40" cy="28" r="14" />
+            <path d="M14 72c0-14 12-26 26-26s26 12 26 26" />
+          </svg>
+        </div>
+        <h3>Jane Smith</h3>
+        <p>Sed do eiusmod tempor incididunt ut labore et dolore.</p>
+      </div>
+      <div class="team-member">
+        <div class="member-icon">
+          <svg viewBox="0 0 80 80" width="100" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="40" cy="28" r="14" />
+            <path d="M14 72c0-14 12-26 26-26s26 12 26 26" />
+          </svg>
+        </div>
+        <h3>Alex Brown</h3>
+        <p>Magna aliqua ut enim ad minim veniam, quis nostrud.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer id="footer">
+    <div class="footer-inner">
+      <div class="footer-socials">
+        <a href="#" class="social-link" aria-label="Twitter">
+          <img src={twitterIcon.src} alt="Twitter" />
+        </a>
+        <a href="#" class="social-link" aria-label="Instagram">
+          <img src={instagramIcon.src} alt="Instagram" />
+        </a>
+        <a href="#" class="social-link" aria-label="TikTok">
+          <img src={tiktokIcon.src} alt="TikTok" />
+        </a>
+        <a href="#" class="social-link" aria-label="YouTube">
+          <img src={youtubeIcon.src} alt="YouTube" />
+        </a>
+      </div>
+      <p class="footer-copy">&copy; 2026 Liam Valty - Excurse Software. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <a href="#" class="kofi-button" aria-label="Support us on Ko-fi">
+    <img src={kofiIcon.src} alt="Ko-fi" />
+    <span>Support Us</span>
+  </a>
+</BaseLayout>
+
+<style is:global>
+  @import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;700&display=swap');
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Inter', system-ui, sans-serif !important;
+    color: #e8e8e8 !important;
+    background: #0a0a0a !important;
+  }
+
+  #menu-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    background: rgba(10, 10, 10, 0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid #a94141;
+    transform: translateY(-100%);
+    transition: transform 0.3s ease;
+  }
+
+  #menu-bar.visible {
+    transform: translateY(0);
+  }
+
+  .menu-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+    padding: 0.6rem 2rem;
+  }
+
+  .menu-logo-link {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    line-height: 0;
+    text-decoration: none;
+  }
+
+  .menu-logo {
+    height: 32px;
+    width: auto;
+    transition: opacity 0.2s;
+  }
+
+  .menu-logo:hover {
+    opacity: 0.7;
+  }
+
+  .menu-brand {
+    font-family: 'Anton', sans-serif;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #e8e8e8;
+    transition: opacity 0.2s;
+  }
+
+  .menu-logo-link:hover .menu-brand {
+    opacity: 0.7;
+  }
+
+  .menu-links {
+    display: flex;
+    gap: 2.5rem;
+    margin-left: auto;
+  }
+
+  .menu-link {
+    color: #a94141;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    transition: color 0.2s;
+  }
+
+  .menu-link:hover {
+    color: #e8e8e8;
+  }
+
+  .section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 0, 0, 0.15) 2px,
+      rgba(0, 0, 0, 0.15) 4px
+    );
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .section > * {
+    position: relative;
+    z-index: 2;
+  }
+
+  .studio {
+    background: radial-gradient(ellipse at 50% 0%, #1a0a0a 0%, #0a0a0a 70%);
+  }
+
+  .studio-content {
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+    max-width: 1200px;
+    width: 100%;
+  }
+
+  .studio-logo img {
+    filter: drop-shadow(0 0 30px rgba(169, 65, 65, 0.3));
+  }
+
+  .studio-text h1 {
+    font-family: 'Anton', sans-serif;
+    font-size: 4rem;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+    color: #a94141;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .tagline {
+    font-size: 1rem;
+    color: #888;
+    max-width: 440px;
+    line-height: 1.8;
+  }
+
+  .games {
+    background: radial-gradient(ellipse at 50% 50%, #111 0%, #0a0a0a 70%);
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  .games h2 {
+    font-family: 'Anton', sans-serif;
+    font-size: 3rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #a94141;
+  }
+
+  .games-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6rem;
+    max-width: 1200px;
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .cartridge-wrap {
+    text-align: center;
+    cursor: pointer;
+  }
+
+  .cartridge-img {
+    width: 160px;
+    height: auto;
+    display: block;
+    transition: transform 0.3s ease, filter 0.3s ease;
+    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.6));
+  }
+
+  .cartridge-img:hover {
+    transform: scale(1.25) translateY(-20px);
+    filter: drop-shadow(0 12px 30px rgba(169, 65, 65, 0.4));
+  }
+
+  .device-label {
+    margin-top: 1.2rem;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: #666;
+  }
+
+  .team {
+    background: radial-gradient(ellipse at 50% 100%, #1a0a0a 0%, #0a0a0a 70%);
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  .team h2 {
+    font-family: 'Anton', sans-serif;
+    font-size: 3rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #a94141;
+  }
+
+  .team-grid {
+    display: flex;
+    gap: 4rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .team-member {
+    text-align: center;
+    max-width: 220px;
+    padding: 2rem 1.5rem;
+    border: 1px solid #222;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.02);
+    transition: border-color 0.3s;
+  }
+
+  .team-member:hover {
+    border-color: #a94141;
+  }
+
+  .member-icon svg {
+    color: #a94141;
+    margin-bottom: 1rem;
+  }
+
+  .team-member h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #e8e8e8;
+  }
+
+  .team-member p {
+    color: #666;
+    font-size: 0.85rem;
+    line-height: 1.6;
+  }
+
+  #footer {
+    background: #0a0a0a;
+    border-top: 1px solid #1a1a1a;
+    padding: 3rem 2rem;
+  }
+
+  .footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .footer-socials {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+  }
+
+  .social-link {
+    display: flex;
+    align-items: center;
+    transition: opacity 0.2s;
+  }
+
+  .social-link:hover {
+    opacity: 0.6;
+  }
+
+  .social-link img {
+    height: 28px;
+    width: auto;
+  }
+
+  .footer-copy {
+    color: #444;
+    font-size: 0.8rem;
+  }
+
+  .kofi-button {
+    position: fixed;
+    bottom: 1.5rem;
+    left: 1.5rem;
+    z-index: 200;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1.2rem;
+    background: #a94141;
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(169, 65, 65, 0.4);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .kofi-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px rgba(169, 65, 65, 0.5);
+  }
+
+  .kofi-button img {
+    height: 24px;
+    width: auto;
+  }
+
+  @media (max-width: 768px) {
+    .studio-content {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .studio-text h1 {
+      font-size: 2.5rem;
+    }
+
+    .tagline {
+      max-width: 100%;
+    }
+
+    .games-content {
+      gap: 3rem;
+    }
+  }
+</style>
+
+<script>
+  const menuBar = document.getElementById('menu-bar');
+  const studio = document.getElementById('studio');
+
+  const observer = new IntersectionObserver(
+    ([entry]) => {
+      menuBar.classList.toggle('visible', !entry.isIntersecting);
+    },
+    { threshold: 0 }
+  );
+
+  if (studio) observer.observe(studio);
+
+  document.querySelectorAll('.menu-link').forEach((link) => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const target = document.querySelector(link.getAttribute('href'));
+      if (target) target.scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+</script>

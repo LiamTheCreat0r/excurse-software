@@ -1,0 +1,17 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = await getCollection('blog');
+---
+
+<PageLayout title="Blog" description="Excurse Software Blog">
+  <h1>Blog</h1>
+  <ul>
+    {posts.map((post) => (
+      <li>
+        <a href={`/blog/${post.slug}`}>{post.data.title}</a>
+      </li>
+    ))}
+  </ul>
+</PageLayout>
