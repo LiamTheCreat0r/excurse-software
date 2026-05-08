@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { Image } from 'astro:assets';
 import logo from '../assets/images/logos/excurse-software-logo.png';
 import logoAlternate from '../assets/images/logos/excurse-software-logo-alternate.png';
 import babelCartridge from '../assets/images/cartridges/babel-adventure-cartridge.png';
@@ -15,7 +16,7 @@ import kofiIcon from '../assets/images/socials/Kofi_icon.png';
   <nav id="menu-bar">
     <div class="menu-inner">
       <a href="#" class="menu-logo-link">
-        <img src={logoAlternate.src} alt="Excurse Software" class="menu-logo" />
+        <Image src={logoAlternate} alt="Excurse Software" class="menu-logo" height={32} loading="eager" quality={90} />
         <span class="menu-brand">Excurse Software</span>
       </a>
       <div class="menu-links">
@@ -34,7 +35,7 @@ import kofiIcon from '../assets/images/socials/Kofi_icon.png';
   <section id="studio" class="section studio">
     <div class="studio-content">
       <div class="studio-logo">
-        <img src={logo.src} alt="Excurse Software" width="180" height="auto" />
+        <Image src={logo} alt="Excurse Software" class="studio-logo-img" width={180} loading="eager" quality={90} />
       </div>
       <div class="studio-text">
         <h1>Excurse Software</h1>
@@ -47,11 +48,11 @@ import kofiIcon from '../assets/images/socials/Kofi_icon.png';
     <h2>Our Games</h2>
     <div class="games-content">
       <div class="cartridge-wrap">
-        <img src={babelCartridge.src} alt="Babel Adventure" class="cartridge-img" />
+        <Image src={babelCartridge} alt="Babel Adventure" class="cartridge-img" width={320} loading="lazy" quality={90} />
         <p class="device-label">Babel Adventure</p>
       </div>
       <div class="cartridge-wrap">
-        <img src={parabellumCartridge.src} alt="Parabellum Rain" class="cartridge-img" />
+        <Image src={parabellumCartridge} alt="Parabellum Rain" class="cartridge-img" width={320} loading="lazy" quality={90} />
         <p class="device-label">Parabellum Rain</p>
       </div>
     </div>
@@ -96,25 +97,25 @@ import kofiIcon from '../assets/images/socials/Kofi_icon.png';
   <footer id="footer">
     <div class="footer-inner">
       <div class="footer-socials">
-        <a href="#" class="social-link" aria-label="Twitter">
-          <img src={twitterIcon.src} alt="Twitter" />
+        <a class="social-link" aria-label="Twitter">
+          <Image src={twitterIcon} alt="Twitter" width={28} height={28} loading="lazy" quality={90} />
         </a>
-        <a href="#" class="social-link" aria-label="Instagram">
-          <img src={instagramIcon.src} alt="Instagram" />
+        <a class="social-link" aria-label="Instagram">
+          <Image src={instagramIcon} alt="Instagram" width={28} height={28} loading="lazy" quality={90} />
         </a>
-        <a href="#" class="social-link" aria-label="TikTok">
-          <img src={tiktokIcon.src} alt="TikTok" />
+        <a class="social-link" aria-label="TikTok">
+          <Image src={tiktokIcon} alt="TikTok" width={28} height={28} loading="lazy" quality={90} />
         </a>
-        <a href="#" class="social-link" aria-label="YouTube">
-          <img src={youtubeIcon.src} alt="YouTube" />
+        <a class="social-link" aria-label="YouTube">
+          <Image src={youtubeIcon} alt="YouTube" width={28} height={28} loading="lazy" quality={90} />
         </a>
       </div>
       <p class="footer-copy">&copy; 2026 Liam Valty - Excurse Software. All rights reserved.</p>
     </div>
   </footer>
 
-  <a href="#" class="kofi-button" aria-label="Support us on Ko-fi">
-    <img src={kofiIcon.src} alt="Ko-fi" />
+  <a class="kofi-button" aria-label="Support us on Ko-fi">
+    <Image src={kofiIcon} alt="Ko-fi" width={24} height={24} loading="lazy" quality={90} />
     <span>Support Us</span>
   </a>
 </BaseLayout>
@@ -130,6 +131,13 @@ import kofiIcon from '../assets/images/socials/Kofi_icon.png';
     font-family: 'Inter', system-ui, sans-serif !important;
     color: #e8e8e8 !important;
     background: #0a0a0a !important;
+    background-image: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 0, 0, 0.15) 2px,
+      rgba(0, 0, 0, 0.15) 4px
+    );
   }
 
   #menu-bar {
@@ -143,6 +151,7 @@ import kofiIcon from '../assets/images/socials/Kofi_icon.png';
     border-bottom: 1px solid #a94141;
     transform: translateY(-100%);
     transition: transform 0.3s ease;
+    will-change: transform;
   }
 
   #menu-bar.visible {
@@ -216,27 +225,6 @@ import kofiIcon from '../assets/images/socials/Kofi_icon.png';
     justify-content: center;
     padding: 4rem 2rem;
     position: relative;
-    overflow: hidden;
-  }
-
-  .section::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: repeating-linear-gradient(
-      0deg,
-      transparent,
-      transparent 2px,
-      rgba(0, 0, 0, 0.15) 2px,
-      rgba(0, 0, 0, 0.15) 4px
-    );
-    pointer-events: none;
-    z-index: 1;
-  }
-
-  .section > * {
-    position: relative;
-    z-index: 2;
   }
 
   .studio {
@@ -246,12 +234,13 @@ import kofiIcon from '../assets/images/socials/Kofi_icon.png';
   .studio-content {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 4rem;
     max-width: 1200px;
     width: 100%;
   }
 
-  .studio-logo img {
+  .studio-logo-img {
     filter: drop-shadow(0 0 30px rgba(169, 65, 65, 0.3));
   }
 
@@ -302,7 +291,7 @@ import kofiIcon from '../assets/images/socials/Kofi_icon.png';
   }
 
   .cartridge-img {
-    width: 160px;
+    width: 320px;
     height: auto;
     display: block;
     transition: transform 0.3s ease, filter 0.3s ease;
@@ -310,8 +299,8 @@ import kofiIcon from '../assets/images/socials/Kofi_icon.png';
   }
 
   .cartridge-img:hover {
-    transform: scale(1.25) translateY(-20px);
-    filter: drop-shadow(0 12px 30px rgba(169, 65, 65, 0.4));
+    transform: scale(1.15) translateY(-40px);
+    filter: drop-shadow(0 16px 40px rgba(0, 0, 0, 0.5));
   }
 
   .device-label {
