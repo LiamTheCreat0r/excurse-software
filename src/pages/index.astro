@@ -5,6 +5,13 @@ import logo from '../assets/images/logos/excurse-software-logo.png';
 import logoAlternate from '../assets/images/logos/excurse-software-logo-alternate.png';
 import babelCartridge from '../assets/images/cartridges/babel-adventure-cartridge.png';
 import parabellumCartridge from '../assets/images/cartridges/parabellum-rain-cartridge.png';
+import endhellCartridge from '../assets/images/cartridges/endhell-cartridge.png';
+import spectraCollabCartridge from '../assets/images/cartridges/spectra-collab-cartridge.png';
+
+import babelCover from '../assets/images/game-covers/babel-adventure.png';
+import parabellumCover from '../assets/images/game-covers/parabellum-rain.png';
+import endhellCover from '../assets/images/game-covers/endhell.png';
+import spectraCollabCover from '../assets/images/game-covers/spectra-collab.png';
 import instagramIcon from '../assets/images/socials/Instagram_logo.png';
 import tiktokIcon from '../assets/images/socials/Tiktok_icon.png';
 import twitterIcon from '../assets/images/socials/Twitter_icon.png';
@@ -45,15 +52,34 @@ import kofiIcon from '../assets/images/socials/Kofi_icon.png';
   </section>
 
   <section id="games" class="section games">
+    <div class="games-cover-bg">
+      <div class="cover-layer" id="cover-layer-1"></div>
+      <div class="cover-layer" id="cover-layer-2"></div>
+    </div>
     <h2>Our Games</h2>
-    <div class="games-content">
-      <div class="cartridge-wrap">
-        <Image src={babelCartridge} alt="Babel Adventure" class="cartridge-img" width={320} loading="lazy" quality={90} />
-        <p class="device-label">Babel Adventure</p>
+    <div class="game-info">
+      <h3 class="game-title" id="game-title">Endhell</h3>
+      <div class="game-info-right">
+        <p class="game-desc" id="game-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        <a href="#" class="game-btn">Know More</a>
       </div>
-      <div class="cartridge-wrap">
-        <Image src={parabellumCartridge} alt="Parabellum Rain" class="cartridge-img" width={320} loading="lazy" quality={90} />
+    </div>
+    <div class="games-content">
+      <div class="cartridge-wrap" data-cover="endhell">
+        <Image src={endhellCartridge} alt="Endhell" class="cartridge-img" width={180} loading="lazy" quality={90} />
+        <p class="device-label">Endhell</p>
+      </div>
+      <div class="cartridge-wrap" data-cover="spectra-collab">
+        <Image src={spectraCollabCartridge} alt="Spectra Collab" class="cartridge-img" width={180} loading="lazy" quality={90} />
+        <p class="device-label">Spectra Collab</p>
+      </div>
+      <div class="cartridge-wrap" data-cover="parabellum">
+        <Image src={parabellumCartridge} alt="Parabellum Rain" class="cartridge-img" width={180} loading="lazy" quality={90} />
         <p class="device-label">Parabellum Rain</p>
+      </div>
+      <div class="cartridge-wrap" data-cover="babel">
+        <Image src={babelCartridge} alt="Babel Adventure" class="cartridge-img" width={180} loading="lazy" quality={90} />
+        <p class="device-label">Babel Adventure</p>
       </div>
     </div>
   </section>
@@ -264,7 +290,36 @@ import kofiIcon from '../assets/images/socials/Kofi_icon.png';
   .games {
     background: radial-gradient(ellipse at 50% 50%, #111 0%, #0a0a0a 70%);
     flex-direction: column;
-    gap: 3rem;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .games-cover-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .cover-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+
+  .cover-layer.active {
+    opacity: 0.6;
   }
 
   .games h2 {
@@ -273,16 +328,85 @@ import kofiIcon from '../assets/images/socials/Kofi_icon.png';
     text-transform: uppercase;
     letter-spacing: 0.06em;
     color: #a94141;
+    position: relative;
+    z-index: 1;
+  }
+
+  .game-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3rem;
+    position: relative;
+    z-index: 1;
+    margin-bottom: 2rem;
+    padding: 2rem 3rem;
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 8px;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .game-title {
+    font-family: 'Anton', sans-serif;
+    font-size: 2.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: #e8e8e8;
+    white-space: nowrap;
+    margin: 0;
+    padding-right: 3rem;
+    border-right: 2px solid #a94141;
+  }
+
+  .game-info-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .game-desc {
+    font-size: 1rem;
+    color: #aaa;
+    line-height: 1.6;
+    margin: 0;
+    max-width: 450px;
+  }
+
+  .game-btn {
+    display: inline-block;
+    padding: 0.75rem 2rem;
+    background: transparent;
+    border: 1px solid #a94141;
+    color: #a94141;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    border-radius: 4px;
+    transition: background 0.3s ease, color 0.3s ease;
+  }
+
+  .game-btn:hover {
+    background: #a94141;
+    color: #fff;
   }
 
   .games-content {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 6rem;
+    gap: 3rem;
     max-width: 1200px;
     width: 100%;
     flex-wrap: wrap;
+    position: relative;
+    z-index: 1;
+    margin-top: auto;
+    padding-bottom: 2rem;
   }
 
   .cartridge-wrap {
@@ -290,16 +414,21 @@ import kofiIcon from '../assets/images/socials/Kofi_icon.png';
     cursor: pointer;
   }
 
-  .cartridge-img {
-    width: 320px;
+.cartridge-img {
+    width: 180px;
     height: auto;
     display: block;
     transition: transform 0.3s ease, filter 0.3s ease;
     filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.6));
   }
 
+  .cartridge-wrap.selected .cartridge-img {
+    transform: translateY(-25px);
+    filter: drop-shadow(0 12px 30px rgba(169, 65, 65, 0.35));
+  }
+
   .cartridge-img:hover {
-    transform: scale(1.15) translateY(-40px);
+    transform: scale(1.1) translateY(-30px);
     filter: drop-shadow(0 16px 40px rgba(0, 0, 0, 0.5));
   }
 
@@ -559,5 +688,78 @@ import kofiIcon from '../assets/images/socials/Kofi_icon.png';
   document.querySelector('.menu-toggle')?.addEventListener('click', () => {
     document.querySelector('.menu-toggle')?.classList.toggle('active');
     document.querySelector('.menu-links')?.classList.toggle('open');
+  });
+
+  const gameInfo = {
+    endhell: { title: 'Endhell', desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.' },
+    'spectra-collab': { title: 'Spectra Collab', desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.' },
+    parabellum: { title: 'Parabellum Rain', desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.' },
+    babel: { title: 'Babel Adventure', desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.' }
+  };
+
+  const covers = {
+    babel: 'url(/excurse-software/images/game-covers/babel-adventure.png)',
+    parabellum: 'url(/excurse-software/images/game-covers/parabellum-rain.png)',
+    endhell: 'url(/excurse-software/images/game-covers/endhell.png)',
+    'spectra-collab': 'url(/excurse-software/images/game-covers/spectra-collab.png)'
+  };
+
+  const gameTitleEl = document.getElementById('game-title');
+  const gameDescEl = document.getElementById('game-desc');
+  const gamesSection = document.getElementById('games');
+  const layer1 = document.getElementById('cover-layer-1');
+  const layer2 = document.getElementById('cover-layer-2');
+  const cartridges = document.querySelectorAll('.cartridge-wrap');
+  let selectedCover = null;
+  let activeLayer = 1;
+
+  function updateGameInfo(key) {
+    if (gameInfo[key]) {
+      gameTitleEl.textContent = gameInfo[key].title;
+      gameDescEl.textContent = gameInfo[key].desc;
+    }
+  }
+
+  if (cartridges.length > 0) {
+    const firstCartridge = cartridges[0];
+    selectedCover = firstCartridge.dataset.cover;
+    firstCartridge.classList.add('selected');
+    setCover(covers[selectedCover]);
+    updateGameInfo(selectedCover);
+  }
+
+  function setCover(coverUrl) {
+    if (activeLayer === 1) {
+      layer2.style.backgroundImage = coverUrl;
+      layer1.classList.remove('active');
+      layer2.classList.add('active');
+      activeLayer = 2;
+    } else {
+      layer1.style.backgroundImage = coverUrl;
+      layer2.classList.remove('active');
+      layer1.classList.add('active');
+      activeLayer = 1;
+    }
+  }
+
+  function clearCover() {
+    if (activeLayer === 1) {
+      layer1.classList.remove('active');
+    } else {
+      layer2.classList.remove('active');
+    }
+  }
+
+  cartridges.forEach((cartridge) => {
+    const coverKey = cartridge.dataset.cover;
+    const coverUrl = covers[coverKey];
+
+    cartridge.addEventListener('mouseenter', () => {
+      cartridges.forEach(c => c.classList.remove('selected'));
+      selectedCover = coverKey;
+      cartridge.classList.add('selected');
+      setCover(coverUrl);
+      updateGameInfo(coverKey);
+    });
   });
 </script>
