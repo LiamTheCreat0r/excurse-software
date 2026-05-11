@@ -52,18 +52,19 @@ import kofiIcon from '../assets/images/socials/Kofi_icon.png';
   </section>
 
   <section id="games" class="section games">
-    <div class="games-cover-bg">
-      <div class="cover-layer" id="cover-layer-1"></div>
-      <div class="cover-layer" id="cover-layer-2"></div>
-    </div>
     <h2>Our Games</h2>
-    <div class="game-info">
-      <h3 class="game-title" id="game-title">Endhell</h3>
-      <div class="game-info-right">
-        <p class="game-desc" id="game-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-        <a href="#" class="game-btn">Know More</a>
+    <div class="games-main">
+      <div class="games-cover-bg">
+        <div class="cover-layer" id="cover-layer-1"></div>
+        <div class="cover-layer" id="cover-layer-2"></div>
       </div>
-    </div>
+      <div class="game-info">
+        <h3 class="game-title" id="game-title">Endhell</h3>
+        <div class="game-info-right">
+          <p class="game-desc" id="game-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+          <a href="#" class="game-btn">Know More</a>
+        </div>
+      </div>
     <div class="games-content">
       <div class="cartridge-wrap" data-cover="endhell">
         <Image src={endhellCartridge} alt="Endhell" class="cartridge-img" width={180} loading="lazy" quality={90} />
@@ -287,12 +288,22 @@ import kofiIcon from '../assets/images/socials/Kofi_icon.png';
     line-height: 1.8;
   }
 
-  .games {
-    background: radial-gradient(ellipse at 50% 50%, #111 0%, #0a0a0a 70%);
+.games {
+    background: transparent;
     flex-direction: column;
-    justify-content: space-between;
     position: relative;
     overflow: hidden;
+  }
+
+  .games-main {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    flex: 1;
+    justify-content: center;
+    gap: 2rem;
+    padding: 3rem;
   }
 
   .games-cover-bg {
@@ -330,7 +341,8 @@ import kofiIcon from '../assets/images/socials/Kofi_icon.png';
     letter-spacing: 0.06em;
     color: #a94141;
     position: relative;
-    z-index: 1;
+    z-index: 2;
+    margin: 2rem 0;
   }
 
   .game-info {
@@ -674,74 +686,94 @@ import kofiIcon from '../assets/images/socials/Kofi_icon.png';
 
     .game-info {
       flex-direction: column;
-      gap: 1rem;
-      padding: 1rem;
-      border-radius: 4px;
-      max-width: 100%;
-      width: 100%;
+      align-items: stretch;
+      gap: 0.75rem;
+      padding: 1.25rem;
+      border-radius: 8px;
+      max-width: 85%;
+      width: 85%;
     }
 
     .game-title {
       padding-right: 0;
       border-right: none;
       border-bottom: 2px solid #a94141;
-      padding-bottom: 0.75rem;
-      font-size: 1.5rem;
+      padding-bottom: 0.5rem;
+      font-size: 1.4rem;
+      text-align: center;
     }
 
     .game-info-right {
+      display: flex;
+      flex-direction: column;
       align-items: center;
-      text-align: center;
       width: 100%;
+      gap: 0.5rem;
     }
 
     .game-desc {
-      font-size: 0.85rem;
+      font-size: 0.8rem;
     }
 
     .game-btn {
       padding: 0.5rem 1.5rem;
-      font-size: 0.75rem;
+      font-size: 0.7rem;
     }
 
-    .games {
+    .games-main {
       flex-direction: row;
-      justify-content: flex-end;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      gap: 1rem;
+      padding: 3rem 1rem;
     }
 
-    .games h2 {
-      display: none;
+    .game-info {
+      flex: 0 0 calc(50% - 0.5rem);
+      max-width: calc(50% - 0.5rem);
     }
 
     .games-content {
+      flex: 0 0 calc(50% - 0.5rem);
+      max-width: calc(50% - 0.5rem);
       flex-direction: column;
       justify-content: flex-end;
-      align-items: flex-end;
-      gap: 1rem;
-      padding-right: 1rem;
-      margin-bottom: 4rem;
+      align-items: center;
+      gap: 0.75rem;
     }
 
-    .cartridge-wrap {
+    .games {
+      flex-direction: column;
+    }
+
+    .games h2 {
+      font-size: 2rem;
+    }
+
+.cartridge-wrap {
       display: flex;
       flex-direction: column;
       align-items: center;
-      width: 100px;
+      width: 80px;
     }
 
     .cartridge-img {
+      width: 60px;
+    }
+
+    .device-label {
       width: 80px;
+      font-size: 0.6rem;
+    }
+
+    .cartridge-img {
+      width: 60px;
     }
 
     .device-label {
       width: 100px;
       font-size: 0.65rem;
-    }
-
-    .cartridge-wrap.selected .cartridge-img,
-    .cartridge-img:hover {
-      transform: none !important;
-      filter: none !important;
     }
 
     .cartridge-wrap.selected {
