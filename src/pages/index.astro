@@ -124,16 +124,16 @@ import kofiIcon from '../assets/images/socials/Kofi_icon.png';
     <div class="footer-inner">
       <div class="footer-socials">
         <a class="social-link" aria-label="Twitter">
-          <Image src={twitterIcon} alt="Twitter" width={28} height={28} loading="lazy" quality={90} />
+          <Image src={twitterIcon} alt="Twitter" width={56} height={56} loading="lazy" quality={100} format="png" />
         </a>
         <a class="social-link" aria-label="Instagram">
-          <Image src={instagramIcon} alt="Instagram" width={28} height={28} loading="lazy" quality={90} />
+          <Image src={instagramIcon} alt="Instagram" width={56} height={56} loading="lazy" quality={100} format="png" />
         </a>
         <a class="social-link" aria-label="TikTok">
-          <Image src={tiktokIcon} alt="TikTok" width={28} height={28} loading="lazy" quality={90} />
+          <Image src={tiktokIcon} alt="TikTok" width={56} height={56} loading="lazy" quality={100} format="png" />
         </a>
         <a class="social-link" aria-label="YouTube">
-          <Image src={youtubeIcon} alt="YouTube" width={28} height={28} loading="lazy" quality={90} />
+          <Image src={youtubeIcon} alt="YouTube" width={56} height={56} loading="lazy" quality={100} format="png" />
         </a>
       </div>
       <p class="footer-copy">&copy; 2026 Liam Valty - Excurse Software. All rights reserved.</p>
@@ -307,19 +307,20 @@ import kofiIcon from '../assets/images/socials/Kofi_icon.png';
 
   .cover-layer {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-size: contain;
+    top: -10%;
+    left: -10%;
+    width: 120%;
+    height: 120%;
+    background-size: cover;
     background-position: center;
-    background-repeat: no-repeat;
     opacity: 0;
     transition: opacity 0.4s ease;
+    transform: scale(0.8);
   }
 
   .cover-layer.active {
-    opacity: 0.6;
+    opacity: 0.5;
+    transform: scale(0.8);
   }
 
   .games h2 {
@@ -346,6 +347,12 @@ import kofiIcon from '../assets/images/socials/Kofi_icon.png';
     max-width: 900px;
     margin-left: auto;
     margin-right: auto;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .game-info.visible {
+    opacity: 1;
   }
 
   .game-title {
@@ -409,12 +416,15 @@ import kofiIcon from '../assets/images/socials/Kofi_icon.png';
     padding-bottom: 2rem;
   }
 
-  .cartridge-wrap {
-    text-align: center;
+.cartridge-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     cursor: pointer;
+    width: 180px;
   }
 
-.cartridge-img {
+ .cartridge-img {
     width: 180px;
     height: auto;
     display: block;
@@ -423,8 +433,10 @@ import kofiIcon from '../assets/images/socials/Kofi_icon.png';
   }
 
   .cartridge-wrap.selected .cartridge-img {
-    transform: translateY(-25px);
+    transform: translateY(-25px) scale(1);
     filter: drop-shadow(0 12px 30px rgba(169, 65, 65, 0.35));
+    position: relative;
+    z-index: 1;
   }
 
   .cartridge-img:hover {
@@ -438,6 +450,12 @@ import kofiIcon from '../assets/images/socials/Kofi_icon.png';
     text-transform: uppercase;
     letter-spacing: 0.15em;
     color: #666;
+    width: 180px;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.4);
+    padding: 0.4rem 0.2rem;
+    border-radius: 10px;
+    color: #fff;
   }
 
   .team {
@@ -519,15 +537,16 @@ import kofiIcon from '../assets/images/socials/Kofi_icon.png';
   .social-link {
     display: flex;
     align-items: center;
-    transition: opacity 0.2s;
+    transition: transform 0.2s ease, opacity 0.2s;
   }
 
   .social-link:hover {
-    opacity: 0.6;
+    opacity: 0.8;
+    transform: scale(1.15);
   }
 
   .social-link img {
-    height: 28px;
+    height: 48px;
     width: auto;
   }
 
@@ -544,20 +563,20 @@ import kofiIcon from '../assets/images/socials/Kofi_icon.png';
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    padding: 0.6rem 1.2rem;
-    background: #a94141;
-    color: #fff;
+    padding: 0.8rem 1.4rem;
+    background: rgba(0, 0, 0, 0.7);
+    color: #e8e8e8;
     text-decoration: none;
     font-size: 0.85rem;
     font-weight: 600;
-    border-radius: 8px;
-    box-shadow: 0 4px 20px rgba(169, 65, 65, 0.4);
-    transition: transform 0.2s, box-shadow 0.2s;
+    border-radius: 24px;
+    border: 1px solid #a94141;
+    transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
   }
 
   .kofi-button:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 25px rgba(169, 65, 65, 0.5);
+    background: rgba(169, 65, 65, 0.8);
   }
 
   .kofi-button img {
@@ -652,12 +671,92 @@ import kofiIcon from '../assets/images/socials/Kofi_icon.png';
     .games-content {
       gap: 3rem;
     }
+
+    .game-info {
+      flex-direction: column;
+      gap: 1rem;
+      padding: 1rem;
+      border-radius: 4px;
+      max-width: 100%;
+      width: 100%;
+    }
+
+    .game-title {
+      padding-right: 0;
+      border-right: none;
+      border-bottom: 2px solid #a94141;
+      padding-bottom: 0.75rem;
+      font-size: 1.5rem;
+    }
+
+    .game-info-right {
+      align-items: center;
+      text-align: center;
+      width: 100%;
+    }
+
+    .game-desc {
+      font-size: 0.85rem;
+    }
+
+    .game-btn {
+      padding: 0.5rem 1.5rem;
+      font-size: 0.75rem;
+    }
+
+    .games {
+      flex-direction: row;
+      justify-content: flex-end;
+    }
+
+    .games h2 {
+      display: none;
+    }
+
+    .games-content {
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: flex-end;
+      gap: 1rem;
+      padding-right: 1rem;
+      margin-bottom: 4rem;
+    }
+
+    .cartridge-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100px;
+    }
+
+    .cartridge-img {
+      width: 80px;
+    }
+
+    .device-label {
+      width: 100px;
+      font-size: 0.65rem;
+    }
+
+    .cartridge-wrap.selected .cartridge-img,
+    .cartridge-img:hover {
+      transform: none !important;
+      filter: none !important;
+    }
+
+    .cartridge-wrap.selected {
+      opacity: 1;
+    }
   }
 
   @media (max-width: 480px) {
     .menu-links {
       padding: 1rem;
       gap: 0.75rem;
+    }
+
+    .games-content {
+      margin-left: 1rem;
     }
   }
 </style>
@@ -713,19 +812,21 @@ import kofiIcon from '../assets/images/socials/Kofi_icon.png';
   let selectedCover = null;
   let activeLayer = 1;
 
-  function updateGameInfo(key) {
-    if (gameInfo[key]) {
-      gameTitleEl.textContent = gameInfo[key].title;
-      gameDescEl.textContent = gameInfo[key].desc;
-    }
-  }
-
   if (cartridges.length > 0) {
     const firstCartridge = cartridges[0];
     selectedCover = firstCartridge.dataset.cover;
     firstCartridge.classList.add('selected');
     setCover(covers[selectedCover]);
     updateGameInfo(selectedCover);
+  }
+
+  function updateGameInfo(key) {
+    if (gameInfo[key]) {
+      gameTitleEl.textContent = gameInfo[key].title;
+      gameDescEl.textContent = gameInfo[key].desc;
+      const gameInfoContainer = document.querySelector('.game-info');
+      if (gameInfoContainer) gameInfoContainer.classList.add('visible');
+    }
   }
 
   function setCover(coverUrl) {
@@ -755,6 +856,14 @@ import kofiIcon from '../assets/images/socials/Kofi_icon.png';
     const coverUrl = covers[coverKey];
 
     cartridge.addEventListener('mouseenter', () => {
+      cartridges.forEach(c => c.classList.remove('selected'));
+      selectedCover = coverKey;
+      cartridge.classList.add('selected');
+      setCover(coverUrl);
+      updateGameInfo(coverKey);
+    });
+
+    cartridge.addEventListener('click', () => {
       cartridges.forEach(c => c.classList.remove('selected'));
       selectedCover = coverKey;
       cartridge.classList.add('selected');
