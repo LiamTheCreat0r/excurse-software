@@ -136,21 +136,21 @@ const posts = (await getCollection('blog')).sort((a, b) => b.data.pubDate.getTim
           </div>
         </div>
         <div class="team-member">
-          <Image src={koticoPortrait} alt="Kotico" class="member-portrait" width={850} loading="eager" />
-          <div class="member-info member-info-center">
-            <h3>Kotico</h3>
-            <div class="member-tags">
-              <span class="tag">Artist</span>
-            </div>
-          </div>
-        </div>
-        <div class="team-member">
           <Image src={liamPortrait} alt="Liam Valty" class="member-portrait" width={850} loading="eager" />
           <div class="member-info member-info-center">
             <h3>Liam Valty</h3>
             <div class="member-tags">
               <span class="tag">Developer</span>
               <span class="tag">Game Design</span>
+            </div>
+          </div>
+        </div>
+        <div class="team-member">
+          <Image src={koticoPortrait} alt="Kotico" class="member-portrait" width={850} loading="eager" />
+          <div class="member-info member-info-center">
+            <h3>Kotico</h3>
+            <div class="member-tags">
+              <span class="tag">Artist</span>
             </div>
           </div>
         </div>
@@ -657,7 +657,7 @@ const posts = (await getCollection('blog')).sort((a, b) => b.data.pubDate.getTim
     border-radius: 8px;
     flex-shrink: 0;
     object-fit: cover;
-    width: 300px;
+    width: 350px;
     height: auto;
   }
 
@@ -1087,8 +1087,9 @@ const posts = (await getCollection('blog')).sort((a, b) => b.data.pubDate.getTim
     }
 
     .member-portrait {
-      width: 350px !important;
-      height: 350px !important;
+      width: 100%;
+      max-width: 350px;
+      height: auto;
     }
 
     .member-info-right {
