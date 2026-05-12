@@ -18,6 +18,9 @@ import tiktokIcon from '../assets/images/socials/Tiktok_icon.png';
 import twitterIcon from '../assets/images/socials/Twitter_icon.png';
 import youtubeIcon from '../assets/images/socials/Youtube_icon.png';
 import kofiIcon from '../assets/images/socials/Kofi_icon.png';
+import koticoPortrait from '../assets/images/portraits/kotico.png';
+import liamPortrait from '../assets/images/portraits/liam-valty.png';
+import shahinePortrait from '../assets/images/portraits/shahine-rachidi.png';
 
 const posts = (await getCollection('blog')).sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
 ---
@@ -72,7 +75,7 @@ const posts = (await getCollection('blog')).sort((a, b) => b.data.pubDate.getTim
     </div>
     <div class="studio-content">
       <div class="studio-logo">
-        <Image src={logo} alt="Excurse Software" class="studio-logo-img" width={140} loading="eager" quality={90} />
+        <Image src={logo} alt="Excurse Software" class="studio-logo-img" width={180} loading="eager" quality={90} />
       </div>
       <div class="studio-text">
         <h1>Excurse Software</h1>
@@ -118,35 +121,36 @@ const posts = (await getCollection('blog')).sort((a, b) => b.data.pubDate.getTim
   <section id="team" class="section team">
     <h2>The Team</h2>
     <div class="team-grid">
-      <div class="team-member">
-        <div class="member-icon">
-          <svg viewBox="0 0 80 80" width="100" fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="40" cy="28" r="14" />
-            <path d="M14 72c0-14 12-26 26-26s26 12 26 26" />
-          </svg>
+      <div class="team-member team-member-column">
+        <Image src={shahinePortrait} alt="Shahine" class="member-portrait" width={300} height={300} loading="eager" format="webp" quality={100} />
+        <div class="member-info member-info-center">
+          <h3>Shahine</h3>
+          <div class="member-tags">
+            <span class="tag">Artist</span>
+            <span class="tag">Game Design</span>
+          </div>
         </div>
-        <h3>John Doe</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+      </div>
+    </div>
+    <div class="team-grid team-bottom">
+      <div class="team-member">
+        <Image src={koticoPortrait} alt="Kotico" class="member-portrait" width={300} height={300} loading="eager" format="webp" quality={100} />
+        <div class="member-info">
+          <h3>Kotico</h3>
+          <div class="member-tags">
+            <span class="tag">Artist</span>
+          </div>
+        </div>
       </div>
       <div class="team-member">
-        <div class="member-icon">
-          <svg viewBox="0 0 80 80" width="100" fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="40" cy="28" r="14" />
-            <path d="M14 72c0-14 12-26 26-26s26 12 26 26" />
-          </svg>
+        <div class="member-info member-info-right">
+          <h3>Liam Valty</h3>
+          <div class="member-tags">
+            <span class="tag">Developer</span>
+            <span class="tag">Game Design</span>
+          </div>
         </div>
-        <h3>Jane Smith</h3>
-        <p>Sed do eiusmod tempor incididunt ut labore et dolore.</p>
-      </div>
-      <div class="team-member">
-        <div class="member-icon">
-          <svg viewBox="0 0 80 80" width="100" fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="40" cy="28" r="14" />
-            <path d="M14 72c0-14 12-26 26-26s26 12 26 26" />
-          </svg>
-        </div>
-        <h3>Alex Brown</h3>
-        <p>Magna aliqua ut enim ad minim veniam, quis nostrud.</p>
+        <Image src={liamPortrait} alt="Liam Valty" class="member-portrait" width={300} height={300} loading="eager" format="webp" quality={100} />
       </div>
     </div>
   </section>
@@ -353,6 +357,20 @@ const posts = (await getCollection('blog')).sort((a, b) => b.data.pubDate.getTim
     z-index: 1;
   }
 
+  .studio-logo {
+    display: flex;
+    align-items: center;
+  }
+
+  .studio-logo::after {
+    content: '';
+    display: block;
+    width: 2px;
+    height: 130px;
+    background: #a94141;
+    margin-left: 2.5rem;
+  }
+
   .studio-logo-img {
     filter: drop-shadow(0 0 30px rgba(169, 65, 65, 0.3));
   }
@@ -481,7 +499,9 @@ const posts = (await getCollection('blog')).sort((a, b) => b.data.pubDate.getTim
   }
 
   .game-btn {
-    display: inline-block;
+    display: block;
+    width: fit-content;
+    margin: 1rem auto 0;
     padding: 0.75rem 2rem;
     background: transparent;
     border: 1px solid #a94141;
@@ -510,7 +530,7 @@ const posts = (await getCollection('blog')).sort((a, b) => b.data.pubDate.getTim
     flex-wrap: wrap;
     position: relative;
     z-index: 1;
-    margin-top: auto;
+    margin: auto;
     padding-bottom: 2rem;
   }
 
@@ -557,7 +577,7 @@ const posts = (await getCollection('blog')).sort((a, b) => b.data.pubDate.getTim
   }
 
   .team {
-    background: radial-gradient(ellipse at 50% 100%, #1a0a0a 0%, #0a0a0a 70%);
+    background: #1a1a1a;
     flex-direction: column;
     gap: 3rem;
   }
@@ -572,31 +592,48 @@ const posts = (await getCollection('blog')).sort((a, b) => b.data.pubDate.getTim
 
   .team-grid {
     display: flex;
-    gap: 4rem;
-    flex-wrap: wrap;
+    align-items: center;
     justify-content: center;
+    gap: 4rem;
+  }
+
+  .team-bottom {
+    margin-top: -4rem;
   }
 
   .team-member {
-    text-align: center;
-    max-width: 220px;
-    padding: 2rem 1.5rem;
-    border: 1px solid #222;
-    border-radius: 8px;
-    background: rgba(255, 255, 255, 0.02);
-    transition: border-color 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    transition: transform 0.3s;
+  }
+
+  .team-member-column {
+    flex-direction: column;
   }
 
   .team-member:hover {
-    border-color: #a94141;
+    transform: scale(1.02);
   }
 
-  .member-icon svg {
-    color: #a94141;
-    margin-bottom: 1rem;
+  .member-portrait {
+    border-radius: 50%;
+    flex-shrink: 0;
   }
 
-  .team-member h3 {
+  .member-info {
+    text-align: left;
+  }
+
+  .member-info-right {
+    text-align: right;
+  }
+
+  .member-info-center {
+    text-align: center;
+  }
+
+  .member-info h3 {
     font-size: 1rem;
     font-weight: 600;
     margin-bottom: 0.5rem;
@@ -605,10 +642,21 @@ const posts = (await getCollection('blog')).sort((a, b) => b.data.pubDate.getTim
     color: #e8e8e8;
   }
 
-  .team-member p {
-    color: #666;
-    font-size: 0.85rem;
-    line-height: 1.6;
+  .member-tags {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .tag {
+    display: inline-block;
+    padding: 0.2rem 0.6rem;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #a94141;
+    border: 1px solid #a94141;
+    border-radius: 4px;
   }
 
   .blog {

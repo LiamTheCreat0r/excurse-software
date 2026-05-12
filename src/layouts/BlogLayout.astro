@@ -1,5 +1,12 @@
 ---
 import BaseLayout from './BaseLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import { Image } from 'astro:assets';
+import twitterIcon from '../assets/images/socials/Twitter_icon.png';
+import instagramIcon from '../assets/images/socials/Instagram_logo.png';
+import tiktokIcon from '../assets/images/socials/Tiktok_icon.png';
+import youtubeIcon from '../assets/images/socials/Youtube_icon.png';
+import kofiIcon from '../assets/images/socials/Kofi_icon.png';
 
 export interface Props {
   title: string;
@@ -12,6 +19,7 @@ const { title, description, pubDate, heroImage } = Astro.props;
 ---
 
 <BaseLayout title={title} description={description}>
+  <Navbar />
   {heroImage && (
     <div class="blog-hero">
       <img src={heroImage} alt={title} />
@@ -25,10 +33,178 @@ const { title, description, pubDate, heroImage } = Astro.props;
     </div>
     <slot />
   </article>
+  <footer id="blog-footer">
+    <div class="footer-inner">
+      <div class="footer-socials">
+        <a class="social-link" aria-label="Twitter" href="https://x.com/excursesoftware" target="_blank" rel="noopener noreferrer">
+          <Image src={twitterIcon} alt="Twitter" width={48} height={48} loading="lazy" quality={100} format="png" />
+        </a>
+        <a class="social-link" aria-label="Instagram" href="https://www.instagram.com/excurse_software/" target="_blank" rel="noopener noreferrer">
+          <Image src={instagramIcon} alt="Instagram" width={48} height={48} loading="lazy" quality={100} format="png" />
+        </a>
+        <a class="social-link" aria-label="TikTok" href="https://www.tiktok.com/@excurse_software" target="_blank" rel="noopener noreferrer">
+          <Image src={tiktokIcon} alt="TikTok" width={48} height={48} loading="lazy" quality={100} format="png" />
+        </a>
+        <a class="social-link" aria-label="YouTube">
+          <Image src={youtubeIcon} alt="YouTube" width={48} height={48} loading="lazy" quality={100} format="png" />
+        </a>
+      </div>
+      <p class="footer-copy">&copy; 2026 Liam Valty - Excurse Software. All rights reserved.</p>
+    </div>
+  </footer>
+  <a class="kofi-button" aria-label="Support us on Ko-fi">
+    <Image src={kofiIcon} alt="Ko-fi" width={24} height={24} loading="lazy" quality={90} />
+    <span>Support Us</span>
+  </a>
 </BaseLayout>
 
 <style is:global>
   @import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;700&display=swap');
+
+  #menu-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    background: rgba(10, 10, 10, 0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid #a94141;
+    transform: translateY(0);
+    transition: transform 0.3s ease;
+    will-change: transform;
+  }
+
+  .menu-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+    padding: 0.6rem 2rem;
+  }
+
+  .menu-logo-link {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    line-height: 0;
+    text-decoration: none;
+  }
+
+  .menu-logo {
+    height: 32px;
+    width: auto;
+    transition: opacity 0.2s;
+  }
+
+  .menu-logo:hover {
+    opacity: 0.7;
+  }
+
+  .menu-brand {
+    font-family: 'Anton', sans-serif;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #e8e8e8;
+    transition: opacity 0.2s;
+  }
+
+  .menu-logo-link:hover .menu-brand {
+    opacity: 0.7;
+  }
+
+  .menu-links {
+    display: flex;
+    gap: 2.5rem;
+    margin-left: auto;
+  }
+
+  .menu-link {
+    color: #a94141;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    transition: color 0.2s;
+  }
+
+  .menu-link:hover {
+    color: #e8e8e8;
+  }
+
+  .menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.25rem;
+    flex-direction: column;
+    gap: 5px;
+    margin-left: auto;
+  }
+
+  .menu-toggle span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: #e8e8e8;
+    border-radius: 1px;
+    transition: transform 0.3s, opacity 0.3s;
+  }
+
+  .menu-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+
+  .menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .menu-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+  }
+
+  @media (max-width: 768px) {
+    .menu-toggle {
+      display: flex;
+    }
+
+    .menu-links {
+      position: fixed;
+      top: 56px;
+      left: 0;
+      width: 100%;
+      flex-direction: column;
+      align-items: center;
+      background: rgba(10, 10, 10, 0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid #a94141;
+      padding: 1.5rem;
+      gap: 1.25rem;
+      margin-left: 0;
+      transform: translateY(-110%);
+      opacity: 0;
+      pointer-events: none;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    .menu-links.open {
+      transform: translateY(0);
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .menu-link {
+      font-size: 0.9rem;
+    }
+
+    .blog-hero {
+      margin-top: 0;
+    }
+  }
 
   body {
     font-family: 'Inter', system-ui, sans-serif !important;
@@ -41,6 +217,7 @@ const { title, description, pubDate, heroImage } = Astro.props;
       rgba(0, 0, 0, 0.15) 2px,
       rgba(0, 0, 0, 0.15) 4px
     );
+    padding-top: 56px;
   }
 
   .blog-hero {
@@ -66,8 +243,8 @@ const { title, description, pubDate, heroImage } = Astro.props;
 
   .blog-header {
     margin-bottom: 2rem;
-    padding-bottom: 2rem;
-    border-bottom: 1px solid #222;
+    padding-bottom: 1.5rem;
+    border-bottom: 2px solid #a94141;
   }
 
   .blog-header time {
@@ -190,9 +367,89 @@ const { title, description, pubDate, heroImage } = Astro.props;
     margin: 1.5rem 0;
   }
 
+  #blog-footer :global(img),
+  .kofi-button :global(img) {
+    max-width: none !important;
+    height: auto !important;
+    border-radius: 0 !important;
+    margin: 0 !important;
+  }
+
   .blog-post :global(hr) {
     border: none;
     border-top: 1px solid #222;
     margin: 2rem 0;
+  }
+
+  #blog-footer {
+    background: #0a0a0a;
+    border-top: 1px solid #1a1a1a;
+    padding: 3rem 2rem;
+    margin-top: 4rem;
+  }
+
+  #blog-footer .footer-inner {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .footer-socials {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+  }
+
+  .social-link {
+    display: flex;
+    align-items: center;
+    transition: transform 0.2s ease, opacity 0.2s;
+  }
+
+  .social-link:hover {
+    opacity: 0.8;
+    transform: scale(1.15);
+  }
+
+  .social-link img {
+    height: 40px;
+    width: auto;
+  }
+
+  .footer-copy {
+    color: #444;
+    font-size: 0.8rem;
+  }
+
+  .kofi-button {
+    position: fixed;
+    bottom: 1.5rem;
+    left: 1.5rem;
+    z-index: 200;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.8rem 1.4rem;
+    background: rgba(0, 0, 0, 0.7);
+    color: #e8e8e8;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border-radius: 24px;
+    border: 1px solid #a94141;
+    transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+  }
+
+  .kofi-button:hover {
+    transform: translateY(-2px);
+    background: rgba(169, 65, 65, 0.8);
+  }
+
+  .kofi-button img {
+    height: 24px;
+    width: auto;
   }
 </style>
