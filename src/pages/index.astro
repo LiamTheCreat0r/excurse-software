@@ -44,13 +44,39 @@ const posts = (await getCollection('blog')).sort((a, b) => b.data.pubDate.getTim
   </nav>
 
   <section id="studio" class="section studio">
+    <div class="studio-video-bg">
+      <video muted loop playsinline class="bg-video active">
+        <source src="/excurse-software/videos/babel-1.webm" type="video/webm" />
+      </video>
+      <video muted loop playsinline class="bg-video">
+        <source src="/excurse-software/videos/babel-2.webm" type="video/webm" />
+      </video>
+      <video muted loop playsinline class="bg-video">
+        <source src="/excurse-software/videos/babel-3.webm" type="video/webm" />
+      </video>
+      <video muted loop playsinline class="bg-video">
+        <source src="/excurse-software/videos/parabellum-rain1.webm" type="video/webm" />
+      </video>
+      <video muted loop playsinline class="bg-video">
+        <source src="/excurse-software/videos/parabellum-rain2.webm" type="video/webm" />
+      </video>
+      <video muted loop playsinline class="bg-video">
+        <source src="/excurse-software/videos/parabellum-rain3.webm" type="video/webm" />
+      </video>
+      <video muted loop playsinline class="bg-video">
+        <source src="/excurse-software/videos/spectra-collab1.webm" type="video/webm" />
+      </video>
+      <video muted loop playsinline class="bg-video">
+        <source src="/excurse-software/videos/spectra-collab2.webm" type="video/webm" />
+      </video>
+    </div>
     <div class="studio-content">
       <div class="studio-logo">
-        <Image src={logo} alt="Excurse Software" class="studio-logo-img" width={180} loading="eager" quality={90} />
+        <Image src={logo} alt="Excurse Software" class="studio-logo-img" width={140} loading="eager" quality={90} />
       </div>
       <div class="studio-text">
         <h1>Excurse Software</h1>
-        <p class="tagline">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        <p class="tagline">A team of passionate artists, nothing more, nothing less.</p>
       </div>
     </div>
   </section>
@@ -71,19 +97,19 @@ const posts = (await getCollection('blog')).sort((a, b) => b.data.pubDate.getTim
       </div>
     <div class="games-content">
       <div class="cartridge-wrap" data-cover="endhell">
-        <Image src={endhellCartridge} alt="Endhell" class="cartridge-img" width={180} loading="lazy" quality={90} />
+        <Image src={endhellCartridge} alt="Endhell" class="cartridge-img" width={140} loading="lazy" quality={90} />
         <p class="device-label">Endhell</p>
       </div>
       <div class="cartridge-wrap" data-cover="spectra-collab">
-        <Image src={spectraCollabCartridge} alt="Spectra Collab" class="cartridge-img" width={180} loading="lazy" quality={90} />
+        <Image src={spectraCollabCartridge} alt="Spectra Collab" class="cartridge-img" width={140} loading="lazy" quality={90} />
         <p class="device-label">Spectra Collab</p>
       </div>
       <div class="cartridge-wrap" data-cover="parabellum">
-        <Image src={parabellumCartridge} alt="Parabellum Rain" class="cartridge-img" width={180} loading="lazy" quality={90} />
+        <Image src={parabellumCartridge} alt="Parabellum Rain" class="cartridge-img" width={140} loading="lazy" quality={90} />
         <p class="device-label">Parabellum Rain</p>
       </div>
       <div class="cartridge-wrap" data-cover="babel">
-        <Image src={babelCartridge} alt="Babel Adventure" class="cartridge-img" width={180} loading="lazy" quality={90} />
+        <Image src={babelCartridge} alt="Babel Adventure" class="cartridge-img" width={140} loading="lazy" quality={90} />
         <p class="device-label">Babel Adventure</p>
       </div>
     </div>
@@ -287,6 +313,33 @@ const posts = (await getCollection('blog')).sort((a, b) => b.data.pubDate.getTim
 
   .studio {
     background: radial-gradient(ellipse at 50% 0%, #1a0a0a 0%, #0a0a0a 70%);
+    overflow: hidden;
+  }
+
+  .studio-video-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+  }
+
+  .bg-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 1s ease;
+    filter: blur(8px) brightness(0.6);
+    transform: scale(1.1);
+  }
+
+  .bg-video.active {
+    opacity: 0.4;
   }
 
   .studio-content {
@@ -296,6 +349,8 @@ const posts = (await getCollection('blog')).sort((a, b) => b.data.pubDate.getTim
     gap: 4rem;
     max-width: 1200px;
     width: 100%;
+    position: relative;
+    z-index: 1;
   }
 
   .studio-logo-img {
@@ -464,11 +519,11 @@ const posts = (await getCollection('blog')).sort((a, b) => b.data.pubDate.getTim
     flex-direction: column;
     align-items: center;
     cursor: pointer;
-    width: 180px;
+    width: 140px;
   }
 
  .cartridge-img {
-    width: 180px;
+    width: 140px;
     height: auto;
     display: block;
     transition: transform 0.3s ease, filter 0.3s ease;
@@ -493,7 +548,7 @@ const posts = (await getCollection('blog')).sort((a, b) => b.data.pubDate.getTim
     text-transform: uppercase;
     letter-spacing: 0.15em;
     color: #666;
-    width: 180px;
+    width: 140px;
     text-align: center;
     background: rgba(0, 0, 0, 0.4);
     padding: 0.4rem 0.2rem;
@@ -1035,4 +1090,24 @@ const posts = (await getCollection('blog')).sort((a, b) => b.data.pubDate.getTim
       updateGameInfo(coverKey);
     });
   });
+
+  const bgVideos = document.querySelectorAll('.bg-video');
+  let currentVideo = 0;
+
+  if (bgVideos.length > 0) {
+    bgVideos[0].classList.add('active');
+    bgVideos[0].play();
+    
+    setInterval(() => {
+      bgVideos[currentVideo].pause();
+      bgVideos[currentVideo].classList.remove('active');
+      let nextVideo;
+      do {
+        nextVideo = Math.floor(Math.random() * bgVideos.length);
+      } while (nextVideo === currentVideo && bgVideos.length > 1);
+      currentVideo = nextVideo;
+      bgVideos[currentVideo].classList.add('active');
+      bgVideos[currentVideo].play();
+    }, 5000);
+  }
 </script>
