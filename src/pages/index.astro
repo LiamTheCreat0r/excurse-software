@@ -74,12 +74,15 @@ const posts = (await getCollection('blog')).sort((a, b) => b.data.pubDate.getTim
       </video>
     </div>
     <div class="studio-content">
-      <div class="studio-logo">
-        <Image src={logo} alt="Excurse Software" class="studio-logo-img" width={180} loading="eager" quality={90} />
-      </div>
-      <div class="studio-text">
-        <h1>Excurse Software</h1>
-        <p class="tagline">A team of passionate artists, nothing more, nothing less.</p>
+      <div class="studio-logo-wrap">
+        <div class="studio-logo">
+          <Image src={logo} alt="Excurse Software" class="studio-logo-img" width={499} loading="eager" />
+          <div class="studio-logo-bar"></div>
+        </div>
+        <div class="studio-text">
+          <h1>Excurse Software</h1>
+          <p class="tagline">A team of passionate artists, nothing more, nothing less.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -100,57 +103,57 @@ const posts = (await getCollection('blog')).sort((a, b) => b.data.pubDate.getTim
       </div>
     <div class="games-content">
       <div class="cartridge-wrap" data-cover="endhell">
-        <Image src={endhellCartridge} alt="Endhell" class="cartridge-img" width={140} loading="lazy" quality={90} />
+        <Image src={endhellCartridge} alt="Endhell" class="cartridge-img" width={799} loading="lazy" />
         <p class="device-label">Endhell</p>
       </div>
       <div class="cartridge-wrap" data-cover="spectra-collab">
-        <Image src={spectraCollabCartridge} alt="Spectra Collab" class="cartridge-img" width={140} loading="lazy" quality={90} />
+        <Image src={spectraCollabCartridge} alt="Spectra Collab" class="cartridge-img" width={799} loading="lazy" />
         <p class="device-label">Spectra Collab</p>
       </div>
       <div class="cartridge-wrap" data-cover="parabellum">
-        <Image src={parabellumCartridge} alt="Parabellum Rain" class="cartridge-img" width={140} loading="lazy" quality={90} />
+        <Image src={parabellumCartridge} alt="Parabellum Rain" class="cartridge-img" width={799} loading="lazy" />
         <p class="device-label">Parabellum Rain</p>
       </div>
       <div class="cartridge-wrap" data-cover="babel">
-        <Image src={babelCartridge} alt="Babel Adventure" class="cartridge-img" width={140} loading="lazy" quality={90} />
+        <Image src={babelCartridge} alt="Babel Adventure" class="cartridge-img" width={799} loading="lazy" />
         <p class="device-label">Babel Adventure</p>
       </div>
     </div>
   </section>
 
-  <section id="team" class="section team">
-    <h2>The Team</h2>
-    <div class="team-grid">
-      <div class="team-member team-member-column">
-        <Image src={shahinePortrait} alt="Shahine" class="member-portrait" width={300} height={300} loading="eager" format="webp" quality={100} />
-        <div class="member-info member-info-center">
-          <h3>Shahine</h3>
-          <div class="member-tags">
-            <span class="tag">Artist</span>
-            <span class="tag">Game Design</span>
+<section id="team" class="section team">
+    <div class="team-section-bg">
+      <h2>The Team</h2>
+      <div class="team-grid">
+        <div class="team-member">
+          <Image src={shahinePortrait} alt="Shahine" class="member-portrait" width={850} loading="eager" />
+          <div class="member-info member-info-center">
+            <h3>Shahine</h3>
+            <div class="member-tags">
+              <span class="tag">Artist</span>
+              <span class="tag">Game Design</span>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-    <div class="team-grid team-bottom">
-      <div class="team-member">
-        <Image src={koticoPortrait} alt="Kotico" class="member-portrait" width={300} height={300} loading="eager" format="webp" quality={100} />
-        <div class="member-info">
-          <h3>Kotico</h3>
-          <div class="member-tags">
-            <span class="tag">Artist</span>
+        <div class="team-member">
+          <Image src={koticoPortrait} alt="Kotico" class="member-portrait" width={850} loading="eager" />
+          <div class="member-info member-info-center">
+            <h3>Kotico</h3>
+            <div class="member-tags">
+              <span class="tag">Artist</span>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="team-member">
-        <div class="member-info member-info-right">
-          <h3>Liam Valty</h3>
-          <div class="member-tags">
-            <span class="tag">Developer</span>
-            <span class="tag">Game Design</span>
+        <div class="team-member">
+          <Image src={liamPortrait} alt="Liam Valty" class="member-portrait" width={850} loading="eager" />
+          <div class="member-info member-info-center">
+            <h3>Liam Valty</h3>
+            <div class="member-tags">
+              <span class="tag">Developer</span>
+              <span class="tag">Game Design</span>
+            </div>
           </div>
         </div>
-        <Image src={liamPortrait} alt="Liam Valty" class="member-portrait" width={300} height={300} loading="eager" format="webp" quality={100} />
       </div>
     </div>
   </section>
@@ -357,14 +360,20 @@ const posts = (await getCollection('blog')).sort((a, b) => b.data.pubDate.getTim
     z-index: 1;
   }
 
+  .studio-logo-wrap {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+  }
+
   .studio-logo {
     display: flex;
     align-items: center;
   }
 
-  .studio-logo::after {
-    content: '';
-    display: block;
+  .studio-logo-bar {
     width: 2px;
     height: 130px;
     background: #a94141;
@@ -372,6 +381,8 @@ const posts = (await getCollection('blog')).sort((a, b) => b.data.pubDate.getTim
   }
 
   .studio-logo-img {
+    width: 180px;
+    height: auto;
     filter: drop-shadow(0 0 30px rgba(169, 65, 65, 0.3));
   }
 
@@ -522,15 +533,14 @@ const posts = (await getCollection('blog')).sort((a, b) => b.data.pubDate.getTim
 
   .games-content {
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     justify-content: center;
     gap: 3rem;
-    max-width: 1200px;
     width: 100%;
     flex-wrap: wrap;
     position: relative;
     z-index: 1;
-    margin: auto;
+    margin: auto auto 0;
     padding-bottom: 2rem;
   }
 
@@ -577,9 +587,13 @@ const posts = (await getCollection('blog')).sort((a, b) => b.data.pubDate.getTim
   }
 
   .team {
-    background: #1a1a1a;
+    background: #0a0a0a;
     flex-direction: column;
     gap: 3rem;
+  }
+
+  .team-section-bg {
+    background-color: transparent;
   }
 
   .team h2 {
@@ -588,23 +602,46 @@ const posts = (await getCollection('blog')).sort((a, b) => b.data.pubDate.getTim
     text-transform: uppercase;
     letter-spacing: 0.06em;
     color: #a94141;
+    text-align: center;
+  }
+
+  .team h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #a94141;
+  }
+
+  .team .tag {
+    display: inline-block;
+    padding: 0.2rem 0.6rem;
+    margin-top: 1rem;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #a94141;
+    border: 1px solid #a94141;
+    border-radius: 4px;
   }
 
   .team-grid {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 4rem;
+    gap: 2rem;
   }
 
   .team-bottom {
-    margin-top: -4rem;
+    margin-top: -2rem;
   }
 
   .team-member {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 1.5rem;
+    gap: 0.75rem;
     transition: transform 0.3s;
   }
 
@@ -617,8 +654,11 @@ const posts = (await getCollection('blog')).sort((a, b) => b.data.pubDate.getTim
   }
 
   .member-portrait {
-    border-radius: 50%;
+    border-radius: 8px;
     flex-shrink: 0;
+    object-fit: cover;
+    width: 300px;
+    height: auto;
   }
 
   .member-info {
@@ -634,18 +674,19 @@ const posts = (await getCollection('blog')).sort((a, b) => b.data.pubDate.getTim
   }
 
   .member-info h3 {
-    font-size: 1rem;
+    font-size: 1.5rem;
     font-weight: 600;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.75rem;
     text-transform: uppercase;
     letter-spacing: 0.08em;
-    color: #e8e8e8;
+    color: #a94141;
   }
 
   .member-tags {
     display: flex;
     gap: 0.5rem;
     flex-wrap: wrap;
+    justify-content: center;
   }
 
   .tag {
@@ -903,6 +944,15 @@ const posts = (await getCollection('blog')).sort((a, b) => b.data.pubDate.getTim
       text-align: center;
     }
 
+    .studio-logo-wrap {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .studio-logo-bar {
+      display: none;
+    }
+
     .studio-text h1 {
       font-size: 2.5rem;
     }
@@ -1013,6 +1063,36 @@ const posts = (await getCollection('blog')).sort((a, b) => b.data.pubDate.getTim
 
     .blog h2 {
       font-size: 2rem;
+    }
+
+    .team {
+      background: #0a0a0a;
+    }
+
+    .team-section-bg {
+      padding: 2rem;
+    }
+
+    .team-grid {
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .team-bottom {
+      margin-top: 0;
+    }
+
+    .team-member {
+      flex-direction: column;
+    }
+
+    .member-portrait {
+      width: 350px !important;
+      height: 350px !important;
+    }
+
+    .member-info-right {
+      text-align: center;
     }
   }
 
